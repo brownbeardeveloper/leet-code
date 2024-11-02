@@ -1,3 +1,5 @@
+# Problem #70
+
 from functools import cache
 
 
@@ -14,4 +16,4 @@ class Solution:
 
 if __name__ == "__main__":
     result = Solution.climbStairs(5)
-    print(result)
+    print(result)  # output: 8
