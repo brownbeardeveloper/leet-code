@@ -46,3 +46,45 @@ class FizzBuzz:
                 ):
                     printNumber(self.counter)
                     self.counter += 1
+
+
+class LeetCodeList:
+    def __init__(self):
+        self.list = []
+
+    def print_fizz_buzz(self):
+        self.list.append("FizzBuzz")
+
+    def print_buzz(self):
+        self.list.append("Buzz")
+
+    def print_fizz(self):
+        self.list.append("Fizz")
+
+    def print_number(self, n):
+        self.list.append(n)
+
+    def get_list(self):
+        return self.list
+
+
+if __name__ == "__main__":
+    lcl = LeetCodeList()
+    fb = FizzBuzz(15)
+
+    thread_a = threading.Thread(target=fb.fizzbuzz, args=(lcl.print_fizz_buzz,))
+    thread_b = threading.Thread(target=fb.buzz, args=(lcl.print_buzz,))
+    thread_c = threading.Thread(target=fb.fizz, args=(lcl.print_fizz,))
+    thread_d = threading.Thread(target=fb.number, args=(lcl.print_number,))
+
+    thread_a.start()
+    thread_b.start()
+    thread_c.start()
+    thread_d.start()
+    thread_a.join()
+    thread_b.join()
+    thread_c.join()
+    thread_d.join()
+
+    print(lcl.get_list())
+    # output: [1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz']
